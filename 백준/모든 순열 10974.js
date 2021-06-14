@@ -42,7 +42,8 @@ function permutation(array, selectNumber) {
   array.forEach((element, index, tempArray) => {
     //선택되어진 숫자
     let pickNum = element;
-    //선택되어진 숫자를 제외한 array
+    //선택되어진 숫자를 제외한 나머지 어래이 index 가 같지 않도록 필터링함
+    //그 이유는 중복값없이 모든 경우의 수 를 뽑기위함.
     let restArray = tempArray.filter((el, idx) => index !== idx);
 
     //나머지 Array가 selectNumber 에 해당할때까지 재귀함수를 순회.
