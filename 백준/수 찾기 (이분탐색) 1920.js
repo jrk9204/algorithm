@@ -5,43 +5,58 @@
 
 let size = 5;
 
-let num1 = [4, 6, 7, 2, 0, 1];
-let num2 = [1, 3, 7, 9, 5];
+let num1 = [4, 1, 5, 2, 3];
+let num2 = [1, 3, 7];
 let result = [];
 //오름차순정렬
 num1.sort((a, b) => a - b);
-num2.sort((a, b) => a - b);
 
-// [1,2,3,4,5]
-
-// for (let i = 0; i < num2.length; i++) {
-//   result.push(readyForSearching(num2[i]));
-// }
-
-// function readyForSearching(targetNum) {
-
-//     function binarySearch (first,mid,end,array){
-
-//     }
-
-// }
-let targetNum = 2;
-
-function binarySearch(array, targetNum) {
-  let first = 0;
-  let end = array.length - 1;
-
-  while (first <= end) {
-    let mid = Math.round((first + end) / 2);
-
-    if (targetNum === array[mid]) {
-      console.log(targetNum);
-    } else if (targetNum < array[mid]) {
-      end = mid;
-    } else {
-      first = mid;
-    }
-  }
+for (let i = 0; i < num2.length; i++) {
+  result.push(binarySearch(num1, num2[i]));
 }
 
-binarySearch(num1, targetNum);
+function binarySearch(array, targetNum) {
+  let findResult = 0;
+  let first = 0;
+  let last = array.length - 1;
+
+  while (first <= last) {
+    let mid = Math.round((first + last) / 2);
+
+    if (targetNum === array[mid]) {
+      findResult = 1;
+      return findResult;
+    } else if (targetNum < array[mid]) {
+      last = mid - 1;
+    } else {
+      first = mid + 1;
+    }
+  }
+
+  return findResult;
+}
+
+for (let i = 0; i < result.length; i++) {
+  console.log(result[i]);
+}
+
+// function binarySearch(array, targetNum) {
+//   let findNum = false;
+//   let first = 0;
+//   let end = array.length - 1;
+
+//   while (first <= end) {
+//     let mid = Math.round((first + end) / 2);
+
+//     if (targetNum === array[mid]) {
+//       findNum = true;
+//       return findNum;
+//     } else if (targetNum < array[mid]) {
+//       end = mid - 1;
+//     } else {
+//       first = mid + 1;
+//     }
+//   }
+
+//   return findNum;
+// }
