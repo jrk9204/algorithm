@@ -18,6 +18,19 @@
 
 //객체를 생성해서 옷의 종류를 키로 지정하고 옷의 이름이 값에 맞으면 추가해준다.
 
+//Hint
+//Object.values() 메소드를 사용해도됨.
+//키에 해당하는 값들을 배열형태로 리턴해줌.
+
+// const object1 = {
+//     a: 'somestring',
+//     b: 42,
+//     c: false
+//   };
+
+//   console.log(Object.values(object1));
+// expected output: Array ["somestring", 42, false]
+
 let cloth = [
   ["yellowhat", "headgear"],
   ["bluesunglasses", "eyewear"],
@@ -29,10 +42,10 @@ let answer = 1;
 
 //이차배열임으로 옷의 종류를 알기위해서 각 배열을 탐색한다.
 cloth.forEach((el) => {
-  //만약 키가 없는 빈 객체일경우 키와 값을 넣어준다
+  //만약 값이 없는 빈 객체일경우 키와 값을 넣어준다
   if (!clothObj[`${el[1]}`]) {
     clothObj[`${el[1]}`] = [el[0]];
-    //만약 있는 키라면 기존 키값에 새로운 값을 추가해준다.
+    //만약 있는 값이 있다면 기존 키값에 새로운 값을 추가해준다.
   } else {
     clothObj[`${el[1]}`] = [...clothObj[`${el[1]}`], el[0]];
   }
