@@ -16,4 +16,73 @@
 //DFS에는 In-order / pre-order/ post-order 세가지 출력방법이있다.
 //order 순서는 root 노드 출력을 어디서 부터 하냐에 따라 다름.
 
-let init = [4, 5, 1];
+let input = [4, 5, 1];
+let node = [
+  [1, 2],
+  [1, 3],
+  [1, 4],
+  [2, 4],
+  [3, 4],
+];
+
+//인접노드 초기화 하기
+let nodeNum = input[0] + 1;
+let vertexNum = input[1];
+let currentNode = input[2];
+
+let metrix = new Array(nodeNum).fill(false);
+let visitedDFS = new Array(nodeNum).fill(false);
+let visitedBFS = new Array(nodeNum).fill(false);
+let answerDFS = [];
+let answerBFS = [];
+
+for (let i = 0; i < nodeNum; i++) {
+  metrix[i] = new Array(nodeNum).fill(false);
+}
+
+//간선 연결하기
+for (let i = 0; i < node.length; i++) {
+  metrix[node[i][0]][node[i][1]] = true;
+}
+
+//DFS 탐색하기
+
+const DFS = (currentNode) => {
+  visitedDFS[currentNode] = true;
+  answerDFS.push(currentNode);
+
+  for (let i = 1; i <= nodeNum; i++) {
+    if (metrix[currentNode][i] === true && visitedDFS[i] === false) {
+      DFS(i);
+    }
+  }
+};
+
+const BFS = (currentNode) => {
+  console.log("CurrentNode =======>", currentNode);
+
+  let queue = [];
+  queue.push(currentNode);
+  answerBFS.push(currentNode);
+  visitedBFS[currentNode] = true;
+
+  while (queue.length !== 0) {
+    let current = queue.shift();
+
+    for (let i = 1; i <= nodeNum; i++) {
+      if (metrix[current][i] === true && visitedBFS[i] === false) {
+        queue.push(i);
+        answerBFS.push(i);
+        visitedBFS[i] = true;
+      }
+    }
+  }
+};
+
+DFS(currentNode);
+BFS(currentNode);
+
+console.log(...answerDFS);
+console.log(...answerBFS);
+
+// === 는 boolean 과 0,1 정확하게 구분함
