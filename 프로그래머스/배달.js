@@ -1,7 +1,7 @@
 // 모든 노드를 탐색하되 1번마을을 기준으로하여 노드의 가충치를 더해가며 연결 끝지점까지 더해나아간다.
-// 문제는 이진트리가아닌 그래프이므로 인접행렬을 우선적으로 만들어야한다.
-// 1번 마을부터 타겟 시간을 구하기위해 간선에대한 가중치를 더해야 한다.
-// 1번 마을에서부터 가중치를 더해야나가기위해서 DFS를 사용해야한다.
+// 한 노드에서 모든 노드 간의 가장 짧은 경로를 찾는 알고리즘 다익스트라를 사용했다.
+// 문제는 이진트리가아닌 그래프이므로 인접행렬을 우선적으로 만들어야했다.
+
 let init = [
   [1, 2, 1],
   [2, 3, 3],
@@ -31,45 +31,40 @@ for (let i = 0; i < init.length; i++) {
   metrix[to][from] = value;
 }
 
-const dfs = (currentNode, value) => {
-  if (currentNode === nodeNum) {
-    return;
-  }
+let distance = metrix[1].slice(1);
 
-  for (let i = 1; i <= nodeNum; i++) {
-    if (metrix[currentNode][i]) {
-      metrix[currentNode][i] += value;
-      dfs(currentNode + 1, metrix[currentNode][i]);
-    }
-  }
-};
-
-// const bfs = (startNode) => {
-//   let queue = [];
-//   queue.push(startNode);
-//   visited[startNode] = 1;
-//   answer += 1;
-
-//   while (queue.length !== 0) {
-//     let current = queue.shift();
-
-//     for (let i = 1; i <= nodeNum; i++) {
-//       let add =0;
-//       if (metrix[current][i] && !visited[i]) {
-//         queue.push(i);
-//         visited[i] = 1;
-//         if(current >=2 && i >=2){
-//             add+= metrix[current][i]
-//         }
-//       }
-//     }
+// const dfs = (currentNode, value) => {
+//   if (currentNode > nodeNum) {
+//     return;
 //   }
 
-//   return answer;
+//   for (let i = 1; i <= nodeNum; i++) {
+//     if (metrix[currentNode][i] && visited[i] === 0) {
+//       visited[i] = 1;
+//       metrix[currentNode][i] += value;
+//       metrix[i][currentNode] = metrix[currentNode][i];
+//       dfs(currentNode + 1, metrix[currentNode][i]);
+//     }
+//   }
 // };
 
-// bfs(1);
+const shortestPath = (startNode) => {
+  let queue = [];
+  queue.push(startNode);
+  visited[startNode] = 1;
+  answer += 1;
 
-dfs(1, 0);
+  while (queue.length !== 0) {
+    let current = queue.shift();
 
-console.log(metrix);
+    for (let i = 1; i <= nodeNum; i++) {}
+  }
+
+  return answer;
+};
+
+shortestPath(1);
+
+console.log(distance);
+
+// dfs(1, 0);
