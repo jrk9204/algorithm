@@ -1,7 +1,6 @@
 // 모든 노드를 탐색하되 1번마을을 기준으로하여 노드의 가충치를 더해가며 연결 끝지점까지 더해나아간다.
 // 문제는 이진트리가아닌 그래프이므로 인접행렬을 우선적으로 만들어야한다.
 // 1번 마을부터 타겟 시간을 구하기위해 간선에대한 가중치를 더해야 한다.
-// 1번 마을에서부터 가중치를 더해야나가기위해서 DFS를 사용해야한다.
 let init = [
   [1, 2, 1],
   [2, 3, 3],
@@ -73,3 +72,65 @@ const dfs = (currentNode, value) => {
 dfs(1, 0);
 
 console.log(metrix);
+
+// BFS 인접행렬을 만들어서 이용하면된다.
+// 인접행렬인데 간선에대한 가중치가있으므로 가중치를 더하면될듯함
+
+//distance 변수 거리의 가중치 , 거리의 가중치 중에서 가장 작은 거리리 값을 뺀다
+
+let init = [
+  [1, 2, 1],
+  [2, 3, 3],
+  [5, 2, 2],
+  [1, 4, 2],
+  [5, 3, 1],
+  [5, 4, 2],
+];
+let nodeNum = 5;
+let deliverTime = 3;
+
+let metrix = new Array(nodeNum + 1).fill(0).map(() => new Array(nodeNum + 1).fill(0));
+let sptSet = new Array(nodeNum + 1).fill(0);
+let distance = new Array(nodeNum + 1).fill(Number.MAX_VALUE);
+
+init.forEach((el) => {
+  let [from, to, value] = el;
+  metrix[from][to] = value;
+  metrix[to][from] = value;
+});
+
+function minDistance(dist, sptSet) {
+  let min = Number.MAX_VALUE;
+  let min_index = -1;
+
+  for (let i = 1; i < nodeNum + 1; i++) {
+    if (sptSet[i] === 0 && dist[i] < min) {
+      min = dist[i];
+      min_index = i;
+    }
+  }
+
+  return min_index;
+}
+
+function shortPath(graph, start) {
+  // Distance of source vertex from itself is always 0.
+  distance[start] = 0;
+
+  //find shortest index
+  for (let i = 1; i < nodeNum + 1; i++) {
+    let u = minDistance(distance, sptSet);
+
+    sptSet[u] = 1;
+
+    // for (let j = 1; j < nodeNum + 1; j++) {
+    //   if (sptSet[j] === 0 && graph[u][j] !== 0 && distance[j] !== Number.MAX_VALUE && distance[u] + graph[u][j] < distance[j]) {
+    //     distance[j] = distance[u] + graph[u][j];
+    //   }
+    // }
+
+    console.log(sptSet);
+  }
+}
+
+shortPath(metrix, 1);
