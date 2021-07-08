@@ -4,7 +4,6 @@
 //change 일 경우에는 이름만 변경하면된다.
 //object 형식으로 유저아이디는 키값을 상황과 닉네임은 value 값을 지정해주어
 // 마지막 까지 업데이트를 시켜주면 될 것 같다.
-
 function solution(record) {
   let obj = {};
   let answer = [];
@@ -26,7 +25,7 @@ function solution(record) {
     }
   });
 
-  console.log(obj);
+  return answer;
 }
 
 solution(["Enter uid1234 Muzi", "Enter uid4567 Prodo", "Leave uid1234", "Enter uid1234 Prodo", "Change uid4567 Ryan"]);
