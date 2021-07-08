@@ -30,46 +30,41 @@ for (let i = 0; i < init.length; i++) {
   metrix[to][from] = value;
 }
 
-const dfs = (currentNode, value) => {
-  if (currentNode === nodeNum) {
-    return;
-  }
+let distance = metrix[1].slice(1);
 
-  for (let i = 1; i <= nodeNum; i++) {
-    if (metrix[currentNode][i]) {
-      metrix[currentNode][i] += value;
-      dfs(currentNode + 1, metrix[currentNode][i]);
-    }
-  }
-};
-
-// const bfs = (startNode) => {
-//   let queue = [];
-//   queue.push(startNode);
-//   visited[startNode] = 1;
-//   answer += 1;
-
-//   while (queue.length !== 0) {
-//     let current = queue.shift();
-
-//     for (let i = 1; i <= nodeNum; i++) {
-//       let add =0;
-//       if (metrix[current][i] && !visited[i]) {
-//         queue.push(i);
-//         visited[i] = 1;
-//         if(current >=2 && i >=2){
-//             add+= metrix[current][i]
-//         }
-//       }
-//     }
+// const dfs = (currentNode, value) => {
+//   if (currentNode > nodeNum) {
+//     return;
 //   }
 
-//   return answer;
+//   for (let i = 1; i <= nodeNum; i++) {
+//     if (metrix[currentNode][i] && visited[i] === 0) {
+//       visited[i] = 1;
+//       metrix[currentNode][i] += value;
+//       metrix[i][currentNode] = metrix[currentNode][i];
+//       dfs(currentNode + 1, metrix[currentNode][i]);
+//     }
+//   }
 // };
 
-// bfs(1);
+const shortestPath = (startNode) => {
+  let queue = [];
+  queue.push(startNode);
+  visited[startNode] = 1;
+  answer += 1;
 
-dfs(1, 0);
+  while (queue.length !== 0) {
+    let current = queue.shift();
+
+    for (let i = 1; i <= nodeNum; i++) {}
+  }
+
+  return answer;
+};
+
+shortestPath(1);
+
+console.log(distance);
 
 console.log(metrix);
 

@@ -32,23 +32,23 @@ for (let i = 0; i < node.length; i++) {
 }
 
 //1번 컴퓨터가 바이러스 걸렸을때 바이러스가 걸리게 되는 컴터수
-const BFS = (startPoint) => {
-  let queue = [];
-  visited[startPoint] = 1;
-  queue.push(startPoint);
+// const BFS = (startPoint) => {
+//   let queue = [];
+//   visited[startPoint] = 1;
+//   queue.push(startPoint);
 
-  while (queue.length !== 0) {
-    let current = queue.shift();
+//   while (queue.length !== 0) {
+//     let current = queue.shift();
 
-    for (let i = 1; i <= num; i++) {
-      if (metrix[current][i] === 1 && visited[i] === 0) {
-        visited[i] = 1;
-        queue.push(i);
-        answer.push(i);
-      }
-    }
-  }
-};
+//     for (let i = 1; i <= num; i++) {
+//       if (metrix[current][i] === 1 && visited[i] === 0) {
+//         visited[i] = 1;
+//         queue.push(i);
+//         answer.push(i);
+//       }
+//     }
+//   }
+// };
 
 BFS(1);
 
