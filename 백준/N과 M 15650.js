@@ -3,7 +3,7 @@
 // 앞서 공부한 순열코드랑 비슷함.
 
 let num = 4;
-let size = 2;
+let size = 3;
 let originArray = [];
 
 for (let i = 1; i <= num; i++) {
@@ -26,9 +26,12 @@ function combination(originArray, size) {
     //다시 돌아갈 필요가 없다.
     let restArray = array.slice(index + 1);
     let recursion = combination(restArray, size - 1);
-    let combine = recursion.map((el) => [pickNum, ...el]);
+    console.log(recursion);
+    // console.log(pickNum, recursion);
+    // let combine = recursion.map((el) => [pickNum, ...el]);
+    // console.log("combine", combine);
 
-    result.push(...combine);
+    // result.push(...combine);
   });
 
   return result;
