@@ -39,6 +39,7 @@ function solution(nums) {
 
     return result === true;
   });
+  g;
 
   console.log(findNum.length);
 }
