@@ -84,7 +84,13 @@ let init = [
 let nodeNum = 5;
 let deliverTime = 3;
 
+<<<<<<< HEAD
 let metrix = new Array(nodeNum + 1).fill(0).map(() => new Array(nodeNum + 1).fill(0));
+=======
+let metrix = new Array(nodeNum + 1)
+  .fill(0)
+  .map(() => new Array(nodeNum + 1).fill(0));
+>>>>>>> ee0703b8e1506aba61bae51efed9fe21a0134d23
 let sptSet = new Array(nodeNum + 1).fill(0);
 let distance = new Array(nodeNum + 1).fill(Number.MAX_VALUE);
 
