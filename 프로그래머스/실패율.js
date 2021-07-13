@@ -38,4 +38,31 @@ function solution(N, stages) {
   console.log(answer);
   return answer;
 }
-solution(5, [2, 1, 2, 6, 2, 4, 3, 3]);
+solution(6, [2, 1, 2, 6, 2, 4, 3, 3]);
+
+function solution(N, stages) {
+  let answer = [];
+  let final = [];
+  let size = stages.length;
+  let sortedStages = stages.sort((a, b) => a - b);
+
+  for (let i = 1; i <= N; i++) {
+    answer.push({ stage: i, people: 0, ratio: 0 });
+  }
+  stages.forEach((el, idx) => {
+    if (el <= N) answer[el - 1]["people"] += 1;
+  });
+
+  answer.forEach((el) => {
+    el.ratio = (el.people / size).toFixed(4);
+    answer.sort((a, b) => b.ratio - a.ratio);
+    size -= el.people;
+  });
+  console.log(answer);
+  answer.forEach((el) => {
+    final.push(el.stage);
+  });
+
+  console.log(final);
+  return answer;
+}
