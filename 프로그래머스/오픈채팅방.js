@@ -7,7 +7,6 @@
 function solution(record) {
   let obj = {};
   let answer = [];
-<<<<<<< HEAD
   let splitArr = [];
 
   record.forEach((el) => {
@@ -29,23 +28,6 @@ function solution(record) {
   return answer;
 }
 
-solution(["Enter uid1234 Muzi", "Enter uid4567 Prodo", "Leave uid1234", "Enter uid1234 Prodo", "Change uid4567 Ryan"]);
-=======
-
-  record.forEach((el) => {
-    let makeArr = el.split(" ");
-    obj[makeArr[1]] = `${makeArr[2]}`;
-  });
-
-  record.forEach((el) => {
-    let makeArr = el.split(" ");
-
-    if (makeArr[0] === enter) {
-    }
-    obj[makeArr[1]] = `${makeArr[2]}`;
-  });
-}
-
 solution([
   "Enter uid1234 Muzi",
   "Enter uid4567 Prodo",
@@ -53,4 +35,3 @@ solution([
   "Enter uid1234 Prodo",
   "Change uid4567 Ryan",
 ]);
->>>>>>> ee0703b8e1506aba61bae51efed9fe21a0134d23
