@@ -2,6 +2,29 @@
 //같은 인덱스가 아니면서 큰수의 인덱스를 찾아서 더해간다.
 
 function solution(land) {
+  for (let i = 1; i < land.length; i++) {
+    for (let j = 0; j < land[0].length; j++) {
+      let maxNum = -1;
+
+      for (let z = 0; z < land[0].length; z++) {
+        if (j !== z) {
+          maxNum = Math.max(maxNum, land[i - 1][z]);
+        }
+      }
+      land[i][j] += maxNum;
+    }
+  }
+
+  return Math.max(...land[land.length - 1]);
+}
+
+solution([
+  [1, 2, 3, 5],
+  [5, 6, 7, 8],
+  [4, 3, 2, 1],
+]);
+
+function solution(land) {
   let trackingIdx = -1;
   let answer = land.reduce((acc, curr) => {
     let findGreatIdx = curr.indexOf(Math.max(...curr));
