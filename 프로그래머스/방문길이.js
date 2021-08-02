@@ -1,5 +1,5 @@
-//방문 object를 생성하여 처음 갔던 길인지 아닌지 체크하여 더해준다.
-//object에서 x 와 y 두개의 키가 필요하다.
+//중복되는 길을 갈경우 카운트가 안되고 중복되는 길일경우 카운트가됨.
+//갔던 길인지 아닌지 판단하기위해서 방문 배열을 만든다.
 
 function solution(dirs) {
   let order = dirs.split("");
@@ -12,13 +12,9 @@ function solution(dirs) {
     let y = curr[1] + direction[el][1];
 
     if (x > -6 && x < 6 && y > -6 && y < 6) {
-      let find = false;
-      visited.forEach((visitedEl) => {
-        if (visitedEl[0] === x && visitedEl[1] === y) find = true;
-      });
-
-      if (!find) {
-        visited.push([x, y]);
+      if (visited.indexOf("" + curr[0] + curr[1] + x + y) === -1) {
+        visited.push("" + curr[0] + curr[1] + x + y);
+        visited.push("" + x + y + curr[0] + curr[1]);
       }
 
       curr = [x, y];
@@ -26,8 +22,8 @@ function solution(dirs) {
   });
 
   console.log(visited);
-  console.log(visited.length);
+
   return visited.length;
 }
 
-solution("LULLLLLLU");
+solution("LRLRL");
