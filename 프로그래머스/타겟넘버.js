@@ -33,3 +33,22 @@ function solution(numbers, target) {
 
   return answer;
 }
+
+//2달후 다시풀어본 코드
+
+function solution(numbers, target) {
+  let answer = 0;
+
+  const DFS = (sum, size) => {
+    if (size === numbers.length) {
+      if (sum === target) answer += 1;
+      return;
+    }
+
+    DFS(sum - numbers[size], size + 1);
+    DFS(sum + numbers[size], size + 1);
+  };
+
+  DFS(0, 0);
+  console.log(answer);
+}

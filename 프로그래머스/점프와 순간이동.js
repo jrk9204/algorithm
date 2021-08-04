@@ -8,20 +8,16 @@
 
 function solution(n) {
   let answer = 0;
-  const DFS = (curr, shortest) => {
+  const DFS = (curr, jump, teleport, shortest) => {
     if (curr >= n) {
-      if (curr <= shortest) {
-        shortest = curr;
-        answer = shortest;
-      }
       return;
     }
     console.log(curr);
 
-    DFS(curr + 1, shortest);
-    DFS(curr - 1, shortest);
+    DFS(jump + 1, jump + 1, teleport, shortest);
+    DFS(curr, jump, teleport * 2, shortest);
   };
-  DFS(0, 0);
+  DFS(0, 0, 0, 0);
   //   console.log(answer);
 }
 
