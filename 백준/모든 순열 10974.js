@@ -36,20 +36,25 @@ function permutation(array, selectNumber) {
   //결과값을 반환하기 위한 변수
   let result = [];
   //종료조건 한개의 숫자가 픽이 될때까지 재귀함수를 돌고 조건에 만족하면 독립적인 숫자배열로 반환
-  if (selectNumber === 1) return array.map((el) => [el]);
-
+  if (selectNumber === 1) {
+    return array.map((el) => [el]);
+  }
   //array 함수를 foreach로 순회
+
   array.forEach((element, index, tempArray) => {
     //선택되어진 숫자
     let pickNum = element;
     //선택되어진 숫자를 제외한 나머지 어래이 index 가 같지 않도록 필터링함
     //그 이유는 중복값없이 모든 경우의 수 를 뽑기위함.
     let restArray = tempArray.filter((el, idx) => index !== idx);
+    // console.log(pickNum, restArray, selectNumber);
 
     //나머지 Array가 selectNumber 에 해당할때까지 재귀함수를 순회.
     //종료 조건을 탈출하면 더해져야함.
     let singleNumArr = permutation(restArray, selectNumber - 1);
+
     let combine = singleNumArr.map((el) => [pickNum, ...el]);
+    console.log(singleNumArr, combine);
 
     //합쳐진 숫자를 결과값에 push한다. push할때 모든 결과값을 유지해야한다.
     result.push(...combine);

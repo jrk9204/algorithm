@@ -1,5 +1,5 @@
-//완전탐색 모든경우의 수를 찾아야한다.
-//완전탐색을 하기위해서는 재귀함수를 이용해야한다.
+//모든 경우의수를 순열을 사용하여 구함...
+//하지만 시간 초과로 오류뜸.
 
 function solution(numbers) {
   const permutation = (arr, size) => {
@@ -12,14 +12,13 @@ function solution(numbers) {
       let restArr = origin.filter((el, subIdx) => mainIdx !== subIdx);
       let splitNum = permutation(restArr, size - 1);
       let combine = splitNum.map((el) => [pickNum, ...el]);
-      console.log(splitNum, combine);
       result.push(...combine);
     });
     return result;
   };
 
   let result = permutation(numbers, numbers.length);
-  // console.log(result);
+  let sortResult = result.map((el) => +el.join(""));
+  sortResult.sort((a, b) => a - b);
+  return sortResult[sortResult.length - 1] + "";
 }
-
-solution([1, 7, 3, 4]);
