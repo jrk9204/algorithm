@@ -84,9 +84,7 @@ let init = [
 let nodeNum = 5;
 let deliverTime = 3;
 
-let metrix = new Array(nodeNum + 1)
-  .fill(0)
-  .map(() => new Array(nodeNum + 1).fill(0));
+let metrix = new Array(nodeNum + 1).fill(0).map(() => new Array(nodeNum + 1).fill(0));
 let sptSet = new Array(nodeNum + 1).fill(0);
 let distance = new Array(nodeNum + 1).fill(Number.MAX_VALUE);
 
@@ -131,3 +129,60 @@ function shortPath(graph, start) {
 }
 
 shortPath(metrix, 1);
+
+//두번째 푸는 배달
+
+function solution(N, road, K) {
+  let visited = new Array(N).fill(false);
+  let answer = new Array(N).fill(Infinity);
+
+  let metrix = Array.from(new Array(N), () => new Array(N).fill(Infinity));
+
+  road.forEach((el, idx) => {
+    const [from, to, value] = el;
+    metrix[from - 1][to - 1] = Math.min(metrix[from - 1][to - 1], value);
+    metrix[to - 1][from - 1] = Math.min(metrix[to - 1][from - 1], value);
+  });
+
+  for (let i = 0; i < N; i++) {
+    answer[i] = metrix[0][i];
+  }
+
+  visited[0] = true;
+  answer[0] = 0;
+
+  const smallest = () => {
+    let min = Infinity;
+    let minIdx = 0;
+
+    answer.forEach((el, idx) => {
+      if (visited[idx] === false && el <= min) {
+        min = el;
+        minIdx = idx;
+      }
+    });
+
+    return minIdx;
+  };
+
+  const dijkstra = () => {
+    answer.forEach((el, idx) => {
+      let findMin = smallest();
+      visited[findMin] = true;
+
+      for (let i = 0; i < N; i++) {
+        if (visited[i] === false) {
+          if (metrix[findMin][i] + answer[findMin] < answer[i]) {
+            answer[i] = metrix[findMin][i] + answer[findMin];
+          }
+        }
+      }
+    });
+  };
+
+  dijkstra();
+  console.log(metrix, answer);
+  let final = answer.filter((el) => el <= K);
+
+  return final.length;
+}
