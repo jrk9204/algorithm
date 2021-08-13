@@ -3,7 +3,6 @@ function solution(begin, target, words) {
   let visited = [];
 
   const findWord = (originWord) => {
-    answer += 1;
 
     return words.filter((el, idx) => {
       let countDiff = 0;
